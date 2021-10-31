@@ -1,5 +1,7 @@
 import _sqlite3, { Database, Statement } from 'sqlite3';
-import fs from 'fs/promises';
+//import fs from 'fs/promises';
+import { promises as fs } from 'fs';
+//import { promises } from "fs";
 import { constants } from 'fs';
 import path from 'path';
 import camelcaseKeys from 'camelcase-keys';
