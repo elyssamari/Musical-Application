@@ -80,7 +80,7 @@ function Instruments({ state }: SideNavProps): JSX.Element {
 }
 
 function Visualizers({ state }: SideNavProps): JSX.Element {
-  const visualizers: List<Visualizer> = state.get('visualizers');
+  const visualizers: List<Visualizer> = state.get('visualizers');console.log("visualizers");
   const activeVisualizer = state.get('visualizer')?.name;
   const location = useLocation();
 
@@ -104,6 +104,7 @@ function Visualizers({ state }: SideNavProps): JSX.Element {
 
 function Songs({ state, dispatch }: SideNavProps): JSX.Element {
   const songs: List<any> = state.get('songs', List());
+  console.log(songs);
   return (
     <Section title="Playlist">
       {songs.map(song => (

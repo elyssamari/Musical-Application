@@ -7,7 +7,7 @@ import { MainPage } from './MainPage';
 import { DispatchAction, appReducer } from './Reducer';
 import { defaultState } from './State';
 import { initializeSocket, send } from './Socket';
-
+import Particles from "react-tsparticles";
 // css imports
 import 'animate.css';
 
@@ -17,6 +17,8 @@ import 'animate.css';
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, defaultState);
+  
+  
 
   useEffect(() => {
     initializeSocket(
@@ -39,6 +41,7 @@ function App() {
         </Route>
         <Route path="/:instrument">
           <MainPage state={state} dispatch={dispatch} />
+          
         </Route>
         <Route path="*">
           <div>404</div>
