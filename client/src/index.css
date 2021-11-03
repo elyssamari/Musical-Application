@@ -95,3 +95,26 @@ html, body, #root {
   height: auto;
   
 }
+#picbg{
+  
+  background-size:cover;
+  background-image: url(../src/img/ryan-hutton-Jztmx9yqjBw-unsplash.jpg);
+  
+  
+}
+#mtpt{
+  background-color: rgba(0,0,0, 0.6);;
+  border: 5px solid white;
+  border-radius: 15px;
+  padding: 10px;
+  
+}
+/*Source
+https://stackoverflow.com/questions/2401953/css-opaque-text-on-low-opacity-div*/
+#ftxt{
+  color: white;
+ 
+  font-weight: bold;
+}
+ 
+
