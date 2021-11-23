@@ -8,27 +8,27 @@ import React from 'react';
 import { Instrument, InstrumentProps } from '../Instruments';
 
 /** ------------------------------------------------------------------------ **
- * Contains implementation of components for Piano.
+ * Contains implementation of components for PanFlute.
  ** ------------------------------------------------------------------------ */
-
+//local
 interface OProps {
   note: string; // C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B
   duration?: string;
   synth?: Tone.Synth; // Contains library code for making sound
   minor?: boolean; // True if minor key, false if major key
   octave: number;
-  index: number; // octave + index together give a location for the piano key
+  index: number; // octave + index together give a location for the PanFlute key
 }
-
-export function PianoKey({
+//local
+export function PanFluteKey({
   note,
   synth,
   minor,
   index,
 }: OProps): JSX.Element {
   /**
-   * This React component corresponds to either a major or minor key in the piano.
-   * See `PianoKeyWithoutJSX` for the React component without JSX.
+   * This React component corresponds to either a major or minor key in the PanFlute.
+   * See `PanFluteKeyWithoutJSX` for the React component without JSX.
    */
   return (
     // Observations:
@@ -45,17 +45,19 @@ export function PianoKey({
       style={{
         // CSS
         top: 0,
-        left: `${index * 2}rem`,
+        left: `${index-20}rem`,
         zIndex: minor ? 1 : 0,
-        width: minor ? '1.5rem' : '2rem',
-        marginLeft: minor ? '0.25rem' : 0,
+        width: '1rem',
+        marginLeft: '1rem',
+        height: `${(index/4)}rem`,
+        backgroundColor: 'brown',
       }}
     ></div>
   );
 }
 
 // eslint-disable-next-line
-function PianoKeyWithoutJSX({
+/*function PanFluteKeyWithoutJSX({
   note,
   synth,
   minor,
@@ -63,9 +65,9 @@ function PianoKeyWithoutJSX({
 }: OProps): JSX.Element {
   /**
    * This React component for pedagogical purposes.
-   * See `PianoKey` for the React component with JSX (JavaScript XML).
+   * See `PanFluteKey` for the React component with JSX (JavaScript XML).
    */
-  return React.createElement(
+  /*return React.createElement(
     'div',
     {
       onMouseDown: () => synth?.triggerAttack(`${note}`),
@@ -84,9 +86,9 @@ function PianoKeyWithoutJSX({
     },
     [],
   );
-}
-
-function PianoType({ title, onClick, active }: any): JSX.Element {
+}*/
+//local
+function PanFluteType({ title, onClick, active }: any): JSX.Element {
   return (
     <div
       onClick={onClick}
@@ -100,25 +102,20 @@ function PianoType({ title, onClick, active }: any): JSX.Element {
   );
 }
 
-function Piano({ synth, setSynth }: InstrumentProps): JSX.Element {
+function PanFlute({ synth, setSynth }: InstrumentProps): JSX.Element {
   const keys = List([
     { note: 'C', idx: 0 },
-    { note: 'Db', idx: 0.5 },
     { note: 'D', idx: 1 },
-    { note: 'Eb', idx: 1.5 },
     { note: 'E', idx: 2 },
     { note: 'F', idx: 3 },
-    { note: 'Gb', idx: 3.5 },
     { note: 'G', idx: 4 },
-    { note: 'Ab', idx: 4.5 },
     { note: 'A', idx: 5 },
-    { note: 'Bb', idx: 5.5 },
     { note: 'B', idx: 6 },
   ]);
 
   const setOscillator = (newType: Tone.ToneOscillatorType) => {
     setSynth(oldSynth => {
-      oldSynth.disconnect();
+      oldSynth.dispose();
 
       return new Tone.Synth({
         oscillator: { type: newType } as Tone.OmniOscillatorOptions,
@@ -140,14 +137,15 @@ function Piano({ synth, setSynth }: InstrumentProps): JSX.Element {
   ]) as List<OscillatorType>;
 
   return (
-    <div className="pv4">
-      <div className="relative dib h4 w-100 ml4">
-        {Range(2, 7).map(octave =>
+    <div className="pv4" id="bigi">
+      <div className="relative  h4 " id="centerfp">
+        <div id="centerf">
+        {Range(5,6).map(octave =>
           keys.map(key => {
             const isMinor = key.note.indexOf('b') !== -1;
             const note = `${key.note}${octave}`;
             return (
-              <PianoKey
+              <PanFluteKey
                 key={note} //react key
                 note={note}
                 synth={synth}
@@ -158,10 +156,11 @@ function Piano({ synth, setSynth }: InstrumentProps): JSX.Element {
             );
           }),
         )}
+        </div>
       </div>
       <div className={'pl4 pt4 flex'}>
         {oscillators.map(o => (
-          <PianoType
+          <PanFluteType
             key={o}
             title={o}
             onClick={() => setOscillator(o)}
@@ -173,6 +172,6 @@ function Piano({ synth, setSynth }: InstrumentProps): JSX.Element {
   );
 }
 
-export const PianoInstrument = new Instrument('Piano', Piano);
+export const tdwlop = new Instrument('tdwlop', PanFlute);
 
 

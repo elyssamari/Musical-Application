@@ -52,8 +52,7 @@ export function VisualizerContainer({ visualizer }: VisualizerContainerProps) {
   const setup = (p5: P5, canvasParentRef: Element) => {
     const width = window.innerWidth;
     const height = window.innerHeight / 2;
-   width1 = width;
-   height1=height/2;
+
     
     /*bg = p5.loadImage('../src/img/homepage_bg.jpg');
     bg.resize(width,height);*/
@@ -63,8 +62,8 @@ export function VisualizerContainer({ visualizer }: VisualizerContainerProps) {
   const setup1 = (p5: P5, canvasParentRef: Element)=>{
     const width = window.innerWidth;
     const height = window.innerHeight / 2;
-    
-    p5.createCanvas(width, height,p5.WEBGL);
+    //p5.angleMode(p5.DEGREES);
+    p5.createCanvas(width, height).parent(canvasParentRef);
   };
 
   const particlesInit = (main: any) => {
@@ -83,7 +82,7 @@ export function VisualizerContainer({ visualizer }: VisualizerContainerProps) {
       <div className={'bg-black absolute bottom-0 right-0 left-0 h-50'}>
         <div className={'z-1 absolute left-0 top-0 pa4 white f5'}>{name}</div>
         <Sketch
-          setup={setup}
+          setup={setup1}
           draw={p5 => draw(p5, analyzer)}
           windowResized={onResize}
         />
@@ -128,10 +127,10 @@ export function VisualizerContainer({ visualizer }: VisualizerContainerProps) {
         },
         particles: {
           color: {
-            value: "#ffffff",
+            value: "#99ff33",
           },
           links: {
-            color: "#ffffff",
+            color: "#231161",
             distance: 150,
             enable: true,
             opacity: 0.5,
@@ -141,11 +140,11 @@ export function VisualizerContainer({ visualizer }: VisualizerContainerProps) {
             enable: true,
           },
           move: {
-            direction: "none",
+            direction: "bottom",
             enable: true,
             outMode: "bounce",
             random: false,
-            speed: 6,
+            speed: 2,
             straight: false,
           },
           number: {
@@ -159,7 +158,7 @@ export function VisualizerContainer({ visualizer }: VisualizerContainerProps) {
             value: 0.5,
           },
           shape: {
-            type: "circle",
+            type: "star",
           },
           size: {
             random: true,
