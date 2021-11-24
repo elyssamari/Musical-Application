@@ -4,8 +4,9 @@ import classNames from 'classnames';
 import { List, Range } from 'immutable';
 import React from 'react';
 
+
 // project imports
-import { Instrument, InstrumentProps } from '../Instruments';
+import { Instrument2, InstrumentProps2 } from '../Instruments';
 
 /** ------------------------------------------------------------------------ **
  * Contains implementation of components for PanFlute.
@@ -14,7 +15,7 @@ import { Instrument, InstrumentProps } from '../Instruments';
 interface OProps {
   note: string; // C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B
   duration?: string;
-  synth?: Tone.Synth; // Contains library code for making sound
+  synth?: Tone.MonoSynth; // Contains library code for making sound
   minor?: boolean; // True if minor key, false if major key
   octave: number;
   index: number; // octave + index together give a location for the PanFlute key
@@ -44,13 +45,13 @@ export function PanFluteKey({
       })}
       style={{
         // CSS
-        top: 0,
-        left: `${index-20}rem`,
+        top: 63,
+        left: `${index*2}rem`,
         zIndex: minor ? 1 : 0,
-        width: '1rem',
+        width: '1.5rem',
         marginLeft: '1rem',
-        height: `${(index/4)}rem`,
-        backgroundColor: 'brown',
+        height: `${(1.5)}rem`,
+        //backgroundColor: '#cc9900',
       }}
     ></div>
   );
@@ -102,7 +103,7 @@ function PanFluteType({ title, onClick, active }: any): JSX.Element {
   );
 }
 
-function PanFlute({ synth, setSynth }: InstrumentProps): JSX.Element {
+function PanFlute({ synth, setSynth }: InstrumentProps2): JSX.Element {
   const keys = List([
     { note: 'C', idx: 0 },
     { note: 'D', idx: 1 },
@@ -117,45 +118,193 @@ function PanFlute({ synth, setSynth }: InstrumentProps): JSX.Element {
     setSynth(oldSynth => {
       oldSynth.dispose();
 
-      return new Tone.Synth({
-        oscillator: { type: newType } as Tone.OmniOscillatorOptions,
+      return new Tone.MonoSynth({
+        oscillator: { type: 'square' } as Tone.OmniOscillatorOptions,
+        envelope: {
+          attack: 0.1
+        }
       }).toDestination();
     });
   };
 
   const oscillators: List<OscillatorType> = List([
-    'sine',
-    'sawtooth',
-    'square',
-    'triangle',
-    'fmsine',
-    'fmsawtooth',
-    'fmtriangle',
-    'amsine',
-    'amsawtooth',
-    'amtriangle',
+    'square'
   ]) as List<OscillatorType>;
 
   return (
     <div className="pv4" id="bigi">
       <div className="relative  h4 " id="centerfp">
+      <svg width="800" height="200" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path stroke="black"  fill="#d9b38c" d="
+        M-1200 200 L-1200 400 L2000 400 L2000 200  L-1200 200
+        
+  Z" />
+
+      <path stroke="black" fill="black" d="
+        M 100, 100
+        m -700, 200
+        a 30,30 0 1,0 105,0
+        a 30,30 0 1,0 -105,0
+
+        M 100, 100
+        m 450, 200
+        a 30,30 0 1,0 105,0
+        a 30,30 0 1,0 -105,0
+
+        M 100, 100
+        m 620, 200
+        a 30,30 0 1,0 105,0
+        a 30,30 0 1,0 -105,0
+        
+        M 100, 100
+        m 790, 200
+        a 30,30 0 1,0 105,0
+        a 30,30 0 1,0 -105,0
+        
+        M 100, 100
+        m 950, 200
+        a 30,30 0 1,0 105,0
+        a 30,30 0 1,0 -105,0
+        
+        M 100, 100
+        m 1120, 200
+        a 30,30 0 1,0 105,0
+        a 30,30 0 1,0 -105,0
+        
+        M 100, 100
+        m 1400, 200
+        a 30,30 0 1,0 105,0
+        a 30,30 0 1,0 -105,0
+      Z"/>
+      <path stroke="black" fill="#bfbfbf" d="
+          M-1100 400 L-1100 200 L-900 200 L-900 400 
+      Z"/>
+      <path stroke="black" fill="#bfbfbf" d="
+        M-200 400 L-200 200 L-100 200 L-100 400 
+      Z"/>
+      <path stroke="black" fill="#bfbfbf" d="
+         M1750 400 L1750 200 L1650 200 L1650 400 
+      Z"/>
+      <path stroke="black" fill="#bfbfbf" d="
+          M1850 400 L1850 200 L1950 200 L1950 400 
+      Z"/>
+
+
+</svg>
+
         <div id="centerf">
-        {Range(5,6).map(octave =>
-          keys.map(key => {
-            const isMinor = key.note.indexOf('b') !== -1;
-            const note = `${key.note}${octave}`;
-            return (
-              <PanFluteKey
-                key={note} //react key
-                note={note}
-                synth={synth}
-                minor={isMinor}
-                octave={octave}
-                index={(octave - 2) * 7 + key.idx}
-              />
-            );
-          }),
-        )}
+
+        <div
+      onMouseDown={() => synth?.triggerAttack(`A5`)} // Question: what is `onMouseDown`?
+      onMouseUp={() => synth?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
+      className={classNames(' pointer absolute dim black  h4'
+      )}
+      style={{
+        // CSS
+        top: 63,
+        left: `8.5rem`,
+        width: '1.5rem',
+        marginLeft: '1rem',
+        height: `${(1.5)}rem`,
+        //backgroundColor: '#cc9900',
+      }}
+    ></div>
+
+<div
+      onMouseDown={() => synth?.triggerAttack(`B5`)} // Question: what is `onMouseDown`?
+      onMouseUp={() => synth?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
+      className={classNames(' pointer absolute dim black  h4'
+      )}
+      style={{
+        // CSS
+        top: 63,
+        left: `26.5rem`,
+        width: '1.5rem',
+        marginLeft: '1rem',
+        height: `${(1.5)}rem`,
+        //backgroundColor: '#cc9900',
+      }}
+    ></div>
+<div
+      onMouseDown={() => synth?.triggerAttack(`C5`)} // Question: what is `onMouseDown`?
+      onMouseUp={() => synth?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
+      className={classNames(' pointer absolute dim black  h4'
+      )}
+      style={{
+        // CSS
+        top: 63,
+        left: `29rem`,
+        width: '1.5rem',
+        marginLeft: '1rem',
+        height: `${(1.5)}rem`,
+        //backgroundColor: '#cc9900',
+      }}
+    ></div>
+          
+          <div
+      onMouseDown={() => synth?.triggerAttack(`D5`)} // Question: what is `onMouseDown`?
+      onMouseUp={() => synth?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
+      className={classNames(' pointer absolute dim black  h4'
+      )}
+      style={{
+        // CSS
+        top: 63,
+        left: `31.59rem`,
+        width: '1.5rem',
+        marginLeft: '1rem',
+        height: `${(1.5)}rem`,
+        //backgroundColor: '#cc9900',
+      }}
+    ></div>
+
+<div
+      onMouseDown={() => synth?.triggerAttack(`E5`)} // Question: what is `onMouseDown`?
+      onMouseUp={() => synth?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
+      className={classNames(' pointer absolute dim black  h4'
+      )}
+      style={{
+        // CSS
+        top: 63,
+        left: `34.2rem`,
+        width: '1.5rem',
+        marginLeft: '1rem',
+        height: `${(1.5)}rem`,
+        //backgroundColor: '#cc9900',
+      }}
+    ></div>
+    
+    <div
+      onMouseDown={() => synth?.triggerAttack(`F5`)} // Question: what is `onMouseDown`?
+      onMouseUp={() => synth?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
+      className={classNames(' pointer absolute dim black  h4'
+      )}
+      style={{
+        // CSS
+        top: 63,
+        left: `37rem`,
+        width: '1.5rem',
+        marginLeft: '1rem',
+        height: `${(1.5)}rem`,
+        //backgroundColor: '#cc9900',
+      }}
+    ></div>
+
+<div
+      onMouseDown={() => synth?.triggerAttack(`G5`)} // Question: what is `onMouseDown`?
+      onMouseUp={() => synth?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
+      className={classNames(' pointer absolute dim black h4'
+      )}
+      style={{
+        // CSS
+        top: 63,
+        left: `41.2rem`,
+        width: '1.5rem',
+        marginLeft: '1rem',
+        height: `${(1.5)}rem`,
+        //backgroundColor: '#cc9900',
+      }}
+    ></div>
+
         </div>
       </div>
       <div className={'pl4 pt4 flex'}>
@@ -172,6 +321,6 @@ function PanFlute({ synth, setSynth }: InstrumentProps): JSX.Element {
   );
 }
 
-export const tdwlop = new Instrument('tdwlop', PanFlute);
+export const tdwlop = new Instrument2('tdwlop', PanFlute);
 
 

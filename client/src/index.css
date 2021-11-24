@@ -117,7 +117,8 @@ https://stackoverflow.com/questions/2401953/css-opaque-text-on-low-opacity-div*/
   font-weight: bold;
 }
 #bigi{
-  background-color: black;
+  background-image: linear-gradient(to bottom right, rgba(35,17,97), rgb(0,0,0));
+  /*background-color: none;*/
 }
 
 #centerf{
@@ -125,6 +126,6 @@ https://stackoverflow.com/questions/2401953/css-opaque-text-on-low-opacity-div*/
 }
 #centerfp{
   position: relative;
-  left: 40%;
+  left: 15%;
   
 }

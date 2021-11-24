@@ -19,9 +19,9 @@ export interface InstrumentProps2{
 
 export class Instrument2 {
   public readonly name: string;
-  public readonly component: React.FC<InstrumentProps>;
+  public readonly component: React.FC<InstrumentProps2>;
 
-  constructor(name: string, component: React.FC<InstrumentProps>) {
+  constructor(name: string, component: React.FC<InstrumentProps2>) {
     this.name = name;
     this.component = component;
   }
