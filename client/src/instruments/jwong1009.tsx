@@ -11,7 +11,7 @@ import { Instrument, InstrumentProps } from '../Instruments';
  * Contains implementation of components for Piano.
  ** ------------------------------------------------------------------------ */
 
-interface PianoKeyProps {
+interface KalimbaKeyProps {
   note: string; // C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B
   duration?: string;
   synth?: Tone.Synth; // Contains library code for making sound
@@ -20,12 +20,12 @@ interface PianoKeyProps {
   index: number; // octave + index together give a location for the piano key
 }
 
-export function PianoKey({
+export function KalimbaKey({
   note,
   synth,
   minor,
   index,
-}: PianoKeyProps): JSX.Element {
+}: KalimbaKeyProps): JSX.Element {
   /**
    * This React component corresponds to either a major or minor key in the piano.
    * See `PianoKeyWithoutJSX` for the React component without JSX.
@@ -60,7 +60,7 @@ function PianoKeyWithoutJSX({
   synth,
   minor,
   index,
-}: PianoKeyProps): JSX.Element {
+}: KalimbaKeyProps): JSX.Element {
   /**
    * This React component for pedagogical purposes.
    * See `PianoKey` for the React component with JSX (JavaScript XML).
@@ -86,7 +86,7 @@ function PianoKeyWithoutJSX({
   );
 }
 
-function PianoType({ title, onClick, active }: any): JSX.Element {
+function KalimbaType({ title, onClick, active }: any): JSX.Element {
   return (
     <div
       onClick={onClick}
@@ -100,20 +100,15 @@ function PianoType({ title, onClick, active }: any): JSX.Element {
   );
 }
 
-function Piano({ synth, setSynth }: InstrumentProps): JSX.Element {
+function Kalimba({ synth, setSynth }: InstrumentProps): JSX.Element {
   const keys = List([
-    { note: 'C', idx: 0 },
-    { note: 'Db', idx: 0.5 },
-    { note: 'D', idx: 1 },
-    { note: 'Eb', idx: 1.5 },
-    { note: 'E', idx: 2 },
-    { note: 'F', idx: 3 },
-    { note: 'Gb', idx: 3.5 },
-    { note: 'G', idx: 4 },
-    { note: 'Ab', idx: 4.5 },
-    { note: 'A', idx: 5 },
-    { note: 'Bb', idx: 5.5 },
-    { note: 'B', idx: 6 },
+    { note: 'C', idx: 1 },
+    { note: 'D', idx: 2 },
+    { note: 'E', idx: 3 },
+    { note: 'F', idx: 4 },
+    { note: 'G', idx: 5 },
+    { note: 'A', idx: 6 },
+    { note: 'B', idx: 7 },
   ]);
 
   const setOscillator = (newType: Tone.ToneOscillatorType) => {
@@ -128,15 +123,6 @@ function Piano({ synth, setSynth }: InstrumentProps): JSX.Element {
 
   const oscillators: List<OscillatorType> = List([
     'sine',
-    'sawtooth',
-    'square',
-    'triangle',
-    'fmsine',
-    'fmsawtooth',
-    'fmtriangle',
-    'amsine',
-    'amsawtooth',
-    'amtriangle',
   ]) as List<OscillatorType>;
 
   return (
@@ -146,14 +132,15 @@ function Piano({ synth, setSynth }: InstrumentProps): JSX.Element {
           keys.map(key => {
             const isMinor = key.note.indexOf('b') !== -1;
             const note = `${key.note}${octave}`;
+            console.log("octave" , octave);
             return (
-              <PianoKey
+              <KalimbaKey
                 key={note} //react key
                 note={note}
                 synth={synth}
                 minor={isMinor}
                 octave={octave}
-                index={(octave - 2) * 7 + key.idx}
+                index={(octave) * 7 + (key.idx)}
               />
             );
           }),
@@ -161,7 +148,7 @@ function Piano({ synth, setSynth }: InstrumentProps): JSX.Element {
       </div>
       <div className={'pl4 pt4 flex'}>
         {oscillators.map(o => (
-          <PianoType
+          <KalimbaType
             key={o}
             title={o}
             onClick={() => setOscillator(o)}
@@ -173,4 +160,4 @@ function Piano({ synth, setSynth }: InstrumentProps): JSX.Element {
   );
 }
 
-export const PianoInstrument = new Instrument('Piano', Piano);
+export const KalimbaInstrument = new Instrument('jwong1009', Kalimba);
