@@ -91,8 +91,9 @@ html, body, #root {
 }
 
 .tsparticles-canvas-el{
-  width: auto;
-  height: auto;
+  width: 700;
+  height: 550;
+  position: relative;
   
 }
 #picbg{
@@ -117,8 +118,13 @@ https://stackoverflow.com/questions/2401953/css-opaque-text-on-low-opacity-div*/
   font-weight: bold;
 }
 #bigi{
-  background-image: linear-gradient(to bottom right, rgba(35,17,97), rgb(0,0,0));
+  /*background-image: linear-gradient(to bottom right, rgba(35,17,97), rgb(0,0,0));*/
   /*background-color: none;*/
+  background-size: contain;
+/*background-repeat: no-repeat;*/
+  background-image: url(https://tdwlop.github.io/CSC600turtleducksvg/tdpicd.svg);
+ background-color:#00004d;
+
 }
 
 #centerf{
@@ -128,4 +134,14 @@ https://stackoverflow.com/questions/2401953/css-opaque-text-on-low-opacity-div*/
   position: relative;
   left: 15%;
   
+}
+#bigvdiv{
+  background-size: contain;
+/*background-repeat: no-repeat;*/
+  background-image: url(https://tdwlop.github.io/CSC600turtleducksvg/tdpicd.svg);
+ background-color:#00004d;
+
+}
+#duckie{
+  margin-top: 50%;
 }

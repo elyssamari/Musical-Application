@@ -63,31 +63,38 @@ export function VisualizerContainer({ visualizer }: VisualizerContainerProps) {
     const width = window.innerWidth;
     const height = window.innerHeight / 2;
     //p5.angleMode(p5.DEGREES);
+   
     p5.createCanvas(width, height).parent(canvasParentRef);
   };
 
   const particlesInit = (main: any) => {
+    
     console.log(main);
     
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    /*<div id="duckie"><Particles id="tsparticles"
+      init={particlesInit}
+      loaded={particlesLoaded}
+      ></Particles></div>*/
   };
 
   const particlesLoaded = (container: any) => {
+    
     console.log(container);
   };
 
   if(name === 'tdwlop'){
     console.log("INSIDE THE IF FOR TDWLOP RETURN");
     return (
-      <div className={'bg-black absolute bottom-0 right-0 left-0 h-50'}>
+      <div className={'bg-black absolute bottom-0 right-0 left-0 h-50'} id="bigvdiv">
         <div className={'z-1 absolute left-0 top-0 pa4 white f5'}>{name}</div>
+     
         <Sketch
-          setup={setup1}
+          setup={setup}
           draw={p5 => draw(p5, analyzer)}
           windowResized={onResize}
         />
-        return (
-    <Particles
+        <Particles
       id="tsparticles"
       init={particlesInit}
       loaded={particlesLoaded} 
@@ -133,7 +140,7 @@ export function VisualizerContainer({ visualizer }: VisualizerContainerProps) {
             color: "#231161",
             distance: 150,
             enable: true,
-            opacity: 0.5,
+            opacity: 0.05,
             width: 1,
           },
           collisions: {
@@ -168,7 +175,6 @@ export function VisualizerContainer({ visualizer }: VisualizerContainerProps) {
         detectRetina: true,
       }}
     />
-  );
       </div>
     );
   }
