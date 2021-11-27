@@ -89,3 +89,90 @@ html, body, #root {
   from {transform:rotate(0deg);}
   to {transform:rotate(360deg);}
 }
+
+.tsparticles-canvas-el{
+  width: 700;
+  height: 550;
+  position: relative;
+  
+}
+#picbg{
+  
+  background-size:cover;
+  background-image: url(../src/img/ryan-hutton-Jztmx9yqjBw-unsplash.jpg);
+  
+  
+}
+#mtpt{
+  background-color: rgba(0,0,0, 0.6);;
+  border: 5px solid white;
+  border-radius: 15px;
+  padding: 10px;
+  
+}
+/*Source
+https://stackoverflow.com/questions/2401953/css-opaque-text-on-low-opacity-div*/
+#ftxt{
+  color: white;
+ 
+  font-weight: bold;
+}
+#bigi{
+  /*background-image: linear-gradient(to bottom right, rgba(35,17,97), rgb(0,0,0));*/
+  /*background-color: none;*/
+  background-size: contain;
+/*background-repeat: no-repeat;*/
+  background-image: url(https://tdwlop.github.io/CSC600turtleducksvg/tdpicd.svg);
+ background-color:#00004d;
+
+}
+
+#centerf{
+  margin: 0 auto;
+}
+#centerfp{
+  position: relative;
+  left: 15%;
+  
+}
+#bigvdiv{
+  background-size: contain;
+/*background-repeat: no-repeat;*/
+  background-image: url(https://tdwlop.github.io/CSC600turtleducksvg/tdpicd.svg);
+ background-color:#00004d;
+
+}
+#duckie{
+  margin-top: 50%;
+}
+form{
+  margin:auto;max-width:300px
+}
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
