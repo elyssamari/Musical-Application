@@ -22,6 +22,7 @@ export async function send(
   return new Promise((resolve, reject) => {
     socket.once(`${name}.${_id}`, resp => {
       const { error, ...success } = resp;
+      console.log('inside Sockettesx send 1');
       if (success) {
         resolve(success);
       } else {

@@ -134,7 +134,7 @@ export function VisualizerContainer({ visualizer }: VisualizerContainerProps) {
         },
         particles: {
           color: {
-            value: "#99ff33",
+            value: "#ffff00",
           },
           links: {
             color: "#231161",

@@ -91,14 +91,15 @@ import { Visualizer } from '../Visualizers';
         p5.rect(-50,-50,100, 100);
         p5.pop();
  
-        p5.push();p5.rotate(p5.frameCount / 50.0);
+        p5.push();
+        p5.rotate(p5.frameCount / 50.0);
         p5.ellipse(100, -80,72, 72);
         
         p5.pop();
  
         //p5.rect(100,-80, 100, 100);
         p5.push();
-        p5.arc(0,150, 1000, 200, p5.PI, p5.TWO_PI);
+        p5.arc(0,150, 800, 800, p5.PI, p5.TWO_PI);
        //p5.scale(amplitude);
  
      //}
@@ -122,6 +123,46 @@ import { Visualizer } from '../Visualizers';
        p5.vertex(x,y);
      }
      p5.endShape();
+     p5.push();
+     p5.translate(100,-80);
+   
+     p5.beginShape();
+     p5.line(12,32,2,66);
+     p5.line(2,66,12,77);
+     p5.line(12,77,59,62);
+     p5.line(59,62,76,78);
+     p5.line(76,78,106,76);
+     p5.line(106,76,70,58);
+     p5.line(70,58,84,54);
+     p5.line(84,54,106,53);
+     p5.line(106,53,126,56);
+     p5.line(126,56,142, 64);
+     p5.line(142,64,143,77);
+     p5.line(143,77,161,93);
+     p5.line(161,93,155,78);
+     p5.line(155,78,156,68);
+     p5.line(156,68,162,69);
+     p5.line(162,69,169,86);
+     p5.line(169,68,205,126);
+     p5.line(205,126,200,104);
+     p5.line(200,104,194,92);
+     p5.line(194,92,219,117);
+     p5.line(219,117,202,80);
+     p5.line(202,80,165,61);
+     p5.line(165,61,149,45);
+     p5.line(149,45,138,27);
+     p5.line(138,27,138,27);
+     p5.line(138,27,115,12);
+     p5.line(115,12,99,12);
+     p5.line(99,12,89,5);
+     p5.line(89,5,61,14);
+     p5.line(61,14,27,27);
+     p5.line(27,27,25,2);
+     p5.line(25,2,16,17);
+     p5.line(16,17,12,32);
+     p5.ellipse(42,41, 25,25);
+     p5.endShape();
+     p5.pop();
   },
 );
 
