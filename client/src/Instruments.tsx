@@ -145,7 +145,10 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
         console.log(time);
         console.log(value);
         // the value is an object which contains both the note and the velocity
-        synth.triggerAttackRelease(value.note, `${value.tlen}n`, time, value.velocity);
+        if(value.note !== 'r'){
+           synth.triggerAttackRelease(value.note, `${value.tlen}n`, time, value.velocity);
+        }
+       
         if (value.endit === 0) {
           dispatch(new DispatchAction('STOP_SONG'));
         }

@@ -106,11 +106,16 @@ function PanFluteType({ title, onClick, active }: any): JSX.Element {
 function PanFlute({ synth, setSynth }: InstrumentProps2): JSX.Element {
   const keys = List([
     { note: 'C', idx: 0 },
+    { note: 'Db', idx: 0.5 },
     { note: 'D', idx: 1 },
+    { note: 'Eb', idx: 1.5 },
     { note: 'E', idx: 2 },
     { note: 'F', idx: 3 },
+    { note: 'Gb', idx: 3.5 },
     { note: 'G', idx: 4 },
+    { note: 'Ab', idx: 4.5 },
     { note: 'A', idx: 5 },
+    { note: 'Bb', idx: 5.5 },
     { note: 'B', idx: 6 },
   ]);
 
