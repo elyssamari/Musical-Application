@@ -9,6 +9,25 @@ import { AppState } from './State';
 /** ------------------------------------------------------------------------ **
  * Contains implementation of an Instruments.
  ** ------------------------------------------------------------------------ */
+
+ export interface InstrumentProps3{
+  state: AppState;
+  dispatch: React.Dispatch<DispatchAction>;
+  name: string;
+  synth: Tone.MembraneSynth;
+  setSynth: (f: (oldSynth: Tone.MembraneSynth) => Tone.MembraneSynth) => void;
+}
+
+export class Instrument3 {
+  public readonly name: string;
+  public readonly component: React.FC<InstrumentProps3>;
+
+  constructor(name: string, component: React.FC<InstrumentProps3>) {
+    this.name = name;
+    this.component = component;
+  }
+}
+
 export interface InstrumentProps2{
   state: AppState;
   dispatch: React.Dispatch<DispatchAction>;
