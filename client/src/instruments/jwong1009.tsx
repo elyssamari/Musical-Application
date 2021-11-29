@@ -2,10 +2,13 @@
 import * as Tone from 'tone';
 import classNames from 'classnames';
 import { List, Range } from 'immutable';
-import React from 'react';
+import React, { useState } from 'react';
 
 // project imports
 import { Instrument, InstrumentProps } from '../Instruments';
+
+// css
+import './kalimba.css';
 
 /** ------------------------------------------------------------------------ **
  * Contains implementation of components for Piano.
@@ -16,20 +19,22 @@ interface KalimbaKeyProps {
   duration?: string;
   synth?: Tone.Synth; // Contains library code for making sound
   minor?: boolean; // True if minor key, false if major key
-  octave: number;
+  // octave: number;
   index: number; // octave + index together give a location for the piano key
 }
 
 export function KalimbaKey({
   note,
   synth,
-  minor,
+  // minor,
   index,
 }: KalimbaKeyProps): JSX.Element {
   /**
    * This React component corresponds to either a major or minor key in the piano.
    * See `PianoKeyWithoutJSX` for the React component without JSX.
    */
+  console.log({ index });
+  const leftPos = index + 1;
   return (
     // Observations:
     // 1. The JSX refers to the HTML-looking syntax within TypeScript.
@@ -38,17 +43,18 @@ export function KalimbaKey({
     <div
       onMouseDown={() => synth?.triggerAttack(`${note}`)} // Question: what is `onMouseDown`?
       onMouseUp={() => synth?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
-      className={classNames('ba pointer absolute dim', {
-        'bg-black black h3': minor, // minor keys are black
-        'black bg-white h4': !minor, // major keys are white
+      className={classNames('ba pointer absolute dim tine', {
+        // 'bg-black black h3': minor, // minor keys are black
+        // 'black bg-white h4': !minor, // major keys are white
       })}
+      // className="tine"
       style={{
         // CSS
         top: 0,
-        left: `${index * 2}rem`,
-        zIndex: minor ? 1 : 0,
-        width: minor ? '1.5rem' : '2rem',
-        marginLeft: minor ? '0.25rem' : 0,
+        left: `${leftPos}rem`,
+        // zIndex: minor ? 1 : 0,
+        // width: minor ? '1.5rem' : '2rem',
+        // marginLeft: minor ? '0.25rem' : 0,
       }}
     ></div>
   );
@@ -102,14 +108,35 @@ function KalimbaType({ title, onClick, active }: any): JSX.Element {
 
 function Kalimba({ synth, setSynth }: InstrumentProps): JSX.Element {
   const keys = List([
-    { note: 'C', idx: 1 },
-    { note: 'D', idx: 2 },
-    { note: 'E', idx: 3 },
-    { note: 'F', idx: 4 },
-    { note: 'G', idx: 5 },
-    { note: 'A', idx: 6 },
-    { note: 'B', idx: 7 },
+    { note: 'D6', idx: 0 },
+    { note: 'B5', idx: 1 },
+    { note: 'G5', idx: 2 },
+    { note: 'E5', idx: 3 },
+    { note: 'C5', idx: 4 },
+    { note: 'A4', idx: 5 },
+    { note: 'F4', idx: 6 },
+    { note: 'D4', idx: 7 },
+    { note: 'C4', idx: 8 },
+    { note: 'E4', idx: 9 },
+    { note: 'G4', idx: 10 },
+    { note: 'B4', idx: 11 },
+    { note: 'D5', idx: 12 },
+    { note: 'F5', idx: 13 },
+    { note: 'A5', idx: 14 },
+    { note: 'C6', idx: 15 },
+    { note: 'E6', idx: 16 },
   ]);
+
+  const [kalSam, setKalSam] = useState(
+    new Tone.Sampler({
+      urls: {
+        C4: "C4.wav"
+      },
+      baseUrl: "http://localhost:3000/",
+    }).toDestination()
+  );
+
+
 
   const setOscillator = (newType: Tone.ToneOscillatorType) => {
     setSynth(oldSynth => {
@@ -123,28 +150,37 @@ function Kalimba({ synth, setSynth }: InstrumentProps): JSX.Element {
 
   const oscillators: List<OscillatorType> = List([
     'sine',
+    'sawtooth',
+    'square',
+    'triangle',
+    'fmsine',
+    'fmsawtooth',
+    'fmtriangle',
+    'amsine',
+    'amsawtooth',
+    'amtriangle',
   ]) as List<OscillatorType>;
 
   return (
     <div className="pv4">
       <div className="relative dib h4 w-100 ml4">
-        {Range(2, 7).map(octave =>
-          keys.map(key => {
-            const isMinor = key.note.indexOf('b') !== -1;
-            const note = `${key.note}${octave}`;
-            console.log("octave" , octave);
-            return (
-              <KalimbaKey
-                key={note} //react key
-                note={note}
-                synth={synth}
-                minor={isMinor}
-                octave={octave}
-                index={(octave) * 7 + (key.idx)}
-              />
-            );
-          }),
-        )}
+        {/* {Range(4, 7).map(octave => */}
+        {keys.map(key => {
+          // const isMinor = key.note.indexOf('b') !== -1;
+          const note = `${key.note}`;
+          return (
+            <KalimbaKey
+              key={note} //react key
+              note={note}
+              synth={synth}
+              // minor={isMinor}
+              // octave={octave}
+              // index={(octave - 4) * 7 + key.idx}
+              index={key.idx}
+            />
+          );
+        })}
+        {/* )} */}
       </div>
       <div className={'pl4 pt4 flex'}>
         {oscillators.map(o => (
