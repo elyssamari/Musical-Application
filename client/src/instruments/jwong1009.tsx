@@ -1,14 +1,11 @@
 // 3rd party library imports
 import * as Tone from 'tone';
 import classNames from 'classnames';
-import { List, Range } from 'immutable';
-import React, { useState } from 'react';
+import { List } from 'immutable';
+import React from 'react';
 
 // project imports
-import { Instrument, InstrumentProps } from '../Instruments';
-
-// css
-import './kalimba.css';
+import { Instrument5, InstrumentProps5 } from '../Instruments';
 
 /** ------------------------------------------------------------------------ **
  * Contains implementation of components for Piano.
@@ -17,7 +14,7 @@ import './kalimba.css';
 interface KalimbaKeyProps {
   note: string; // C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B
   duration?: string;
-  synth?: Tone.Synth; // Contains library code for making sound
+  synth?: Tone.FMSynth; // Contains library code for making sound
   minor?: boolean; // True if minor key, false if major key
   // octave: number;
   index: number; // octave + index together give a location for the piano key
@@ -26,37 +23,42 @@ interface KalimbaKeyProps {
 export function KalimbaKey({
   note,
   synth,
-  // minor,
   index,
 }: KalimbaKeyProps): JSX.Element {
   /**
    * This React component corresponds to either a major or minor key in the piano.
    * See `PianoKeyWithoutJSX` for the React component without JSX.
    */
-  console.log({ index });
-  const leftPos = index + 1;
+  let height = 0;
+  if (index < 9) {
+    height = index * 6;
+  }
+  
   return (
     // Observations:
     // 1. The JSX refers to the HTML-looking syntax within TypeScript.
     // 2. The JSX will be **transpiled** into the corresponding `React.createElement` library call.
     // 3. The curly braces `{` and `}` should remind you of string interpolation.
-    <div
-      onMouseDown={() => synth?.triggerAttack(`${note}`)} // Question: what is `onMouseDown`?
-      onMouseUp={() => synth?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
-      className={classNames('ba pointer absolute dim tine', {
-        // 'bg-black black h3': minor, // minor keys are black
-        // 'black bg-white h4': !minor, // major keys are white
-      })}
-      // className="tine"
-      style={{
-        // CSS
-        top: 0,
-        left: `${leftPos}rem`,
-        // zIndex: minor ? 1 : 0,
-        // width: minor ? '1.5rem' : '2rem',
-        // marginLeft: minor ? '0.25rem' : 0,
-      }}
-    ></div>
+
+      <div
+        onMouseDown={() => synth?.triggerAttack(`${note}`)} // Question: what is `onMouseDown`?
+        onMouseUp={() => synth?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
+        className={classNames('ba pointer flex justify-center dim', {
+        })}
+        style={{
+          // CSS
+          marginLeft: '2px',
+          marginRight: '2px',
+          marginTop: `${height}px`,
+          left: `${index}rem`,
+          borderRadius: '10px',
+          backgroundColor: "silver",
+          border: '1px solid black',
+          width: '20px',
+          height: '100px',
+        }}
+      ></div>
+    // </>
   );
 }
 
@@ -76,7 +78,7 @@ function PianoKeyWithoutJSX({
     {
       onMouseDown: () => synth?.triggerAttack(`${note}`),
       onMouseUp: () => synth?.triggerRelease('+0.25'),
-      className: classNames('ba pointer absolute dim', {
+      className: classNames('ba pointer absolute dim dib', {
         'bg-black black h3': minor,
         'black bg-white h4': !minor,
       }),
@@ -96,9 +98,9 @@ function KalimbaType({ title, onClick, active }: any): JSX.Element {
   return (
     <div
       onClick={onClick}
-      className={classNames('dim pointer ph2 pv1 ba mr2 br1 fw7 bw1', {
-        'b--black black': active,
-        'gray b--light-gray': !active,
+      className={classNames('dim pointer ph2 pv1 ba mr2 br1 bw1 garamond b', {
+        'b--light-blue bg-washed-blue': active,
+        'bg-lightest-blue b--light-blue': !active,
       })}
     >
       {title}
@@ -106,7 +108,7 @@ function KalimbaType({ title, onClick, active }: any): JSX.Element {
   );
 }
 
-function Kalimba({ synth, setSynth }: InstrumentProps): JSX.Element {
+function Kalimba({ synth, setSynth }: InstrumentProps5): JSX.Element {
   const keys = List([
     { note: 'D6', idx: 0 },
     { note: 'B5', idx: 1 },
@@ -127,22 +129,18 @@ function Kalimba({ synth, setSynth }: InstrumentProps): JSX.Element {
     { note: 'E6', idx: 16 },
   ]);
 
-  const [kalSam, setKalSam] = useState(
-    new Tone.Sampler({
-      urls: {
-        C4: "C4.wav"
-      },
-      baseUrl: "http://localhost:3000/",
-    }).toDestination()
-  );
-
-
 
   const setOscillator = (newType: Tone.ToneOscillatorType) => {
     setSynth(oldSynth => {
       oldSynth.dispose();
 
-      return new Tone.Synth({
+      return new Tone.FMSynth({
+        envelope: {
+          attack: 0.1,
+          decay: 0.2,
+          sustain: 0.3,
+          release: 0.5
+        },
         oscillator: { type: newType } as Tone.OmniOscillatorOptions,
       }).toDestination();
     });
@@ -163,26 +161,23 @@ function Kalimba({ synth, setSynth }: InstrumentProps): JSX.Element {
 
   return (
     <div className="pv4">
-      <div className="relative dib h4 w-100 ml4">
-        {/* {Range(4, 7).map(octave => */}
+      <div className="relative flex justify-center w-100" style={{
+        height: '10rem'
+      }}>
+
         {keys.map(key => {
-          // const isMinor = key.note.indexOf('b') !== -1;
-          const note = `${key.note}`;
+           const note = `${key.note}`;
           return (
             <KalimbaKey
               key={note} //react key
               note={note}
               synth={synth}
-              // minor={isMinor}
-              // octave={octave}
-              // index={(octave - 4) * 7 + key.idx}
               index={key.idx}
             />
           );
         })}
-        {/* )} */}
       </div>
-      <div className={'pl4 pt4 flex'}>
+      <div className={'pl4 pt4 flex justify-center'}>
         {oscillators.map(o => (
           <KalimbaType
             key={o}
@@ -196,4 +191,4 @@ function Kalimba({ synth, setSynth }: InstrumentProps): JSX.Element {
   );
 }
 
-export const KalimbaInstrument = new Instrument('jwong1009', Kalimba);
+export const KalimbaInstrument = new Instrument5('jwong1009', Kalimba);
