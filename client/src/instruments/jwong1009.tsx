@@ -6,6 +6,7 @@ import React from 'react';
 
 // project imports
 import { Instrument5, InstrumentProps5 } from '../Instruments';
+import background from '../img/blueskyleaves.jpeg';
 
 /** ------------------------------------------------------------------------ **
  * Contains implementation of components for Piano.
@@ -13,10 +14,8 @@ import { Instrument5, InstrumentProps5 } from '../Instruments';
 
 interface KalimbaKeyProps {
   note: string; // C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B
-  duration?: string;
   synth?: Tone.FMSynth; // Contains library code for making sound
   minor?: boolean; // True if minor key, false if major key
-  // octave: number;
   index: number; // octave + index together give a location for the piano key
 }
 
@@ -31,9 +30,43 @@ export function KalimbaKey({
    */
   let height = 0;
   if (index < 9) {
-    height = index * 6;
+    height = index * 10;
   }
-  
+ 
+  switch (index) {
+    case 9: {
+      height = (index * 8) - 2;
+      break;
+    }
+    case 10: {
+      height = index * 6;
+      break;
+    }
+    case 11: {
+      height = (index * 5) - 5;
+      break;
+    }
+    case 12: {
+      height = (index * 3) + 4;
+      break;
+    }
+    case 13: {
+      height = (index * 2) + 4;
+      break;
+    }
+    case 14: {
+      height = index + 6;
+      break;
+    }
+    case 15: {
+      height = index - 5;
+      break;
+    }
+    case 16: {
+      height = index - index;
+      break;
+    }
+  }
   return (
     // Observations:
     // 1. The JSX refers to the HTML-looking syntax within TypeScript.
@@ -47,12 +80,12 @@ export function KalimbaKey({
         })}
         style={{
           // CSS
-          marginLeft: '2px',
-          marginRight: '2px',
+          marginLeft: '1px',
+          marginRight: '1px',
           marginTop: `${height}px`,
           left: `${index}rem`,
           borderRadius: '10px',
-          backgroundColor: "silver",
+          backgroundColor: "gainsboro",
           border: '1px solid black',
           width: '20px',
           height: '100px',
@@ -141,6 +174,9 @@ function Kalimba({ synth, setSynth }: InstrumentProps5): JSX.Element {
           sustain: 0.3,
           release: 0.5
         },
+        harmonicity: 3,
+        modulationIndex: 5,
+        volume: 4,
         oscillator: { type: newType } as Tone.OmniOscillatorOptions,
       }).toDestination();
     });
@@ -160,11 +196,11 @@ function Kalimba({ synth, setSynth }: InstrumentProps5): JSX.Element {
   ]) as List<OscillatorType>;
 
   return (
-    <div className="pv4">
-      <div className="relative flex justify-center w-100" style={{
-        height: '10rem'
+      <div className="pv4" style={{
+        backgroundImage: `url(${background})`,
+        opacity: 0.8
       }}>
-
+      <div className="relative flex justify-center w-100">
         {keys.map(key => {
            const note = `${key.note}`;
           return (
@@ -187,7 +223,7 @@ function Kalimba({ synth, setSynth }: InstrumentProps5): JSX.Element {
           />
         ))}
       </div>
-    </div>
+      </div>
   );
 }
 
