@@ -102,7 +102,19 @@ Eb4,8 F4,8 Eb4,4 Eb4,4 D4,4 Eb4,4 D4,4 F4,4 Eb4,4 D4,4 Eb4,4 Eb4,4 D4,4 Eb4,4 D4
 Eb4,4 F4,4 G4,2 G4,8 G4,8 F4,8 Eb4,8 Bb4,4 Bb4,4 Eb4,8 G4,8 Eb4,8 F4,8 Eb4,1');
 DELETE FROM newsongs WHERE id = 9;
 
+INSERT INTO newsongs (id, song_title, artist_name, genre_type, notes)
+VALUES (10,'Leaves From The Vine','Taylor Davis','Soundtrack',
+'G5,3 G5,3 F4,5 E4,2 G5,3 G5,3 F4,5 E4,2 C4,3 E4,5 E4,5 E4,5 D4,5.5 C4,2');
+DELETE FROM newsongs WHERE id = 10;
 
+-- G5,2 G5,2 F4,4 E3,0.5 
+-- G5,2 G5,2 F4,4 E3,0.5
+-- D2,4 E3,4 E3,4 E3,4 D2,4 C1,0.5
+-- E3,4 E3,4 E3,4 D2,4 C1,0.5
+-- G5,4 G5,4 G5,4 F4,4 E3,0.5 
+-- G5,2 G5,2 F4,4 E3,0.5
+-- E3,4 E3,4 E3,4 D2,4 C1,0.5
+-- E3,2 E3,2 D2,4 C1,0.5
 
 
 
