@@ -10,24 +10,6 @@ import { AppState } from './State';
  * Contains implementation of an Instruments.
  ** ------------------------------------------------------------------------ */
 
-// export interface InstrumentProps5 {
-//   state: AppState;
-//   dispatch: React.Dispatch<DispatchAction>;
-//   name: string;
-//   synth: Tone.PluckSynth;
-//   setSynth: (f: (oldSynth: Tone.PluckSynth) => Tone.PluckSynth) => void;
-// }
-
-// export class Instrument5 {
-//   public readonly name: string;
-//   public readonly component: React.FC<InstrumentProps5>;
-
-//   constructor(name: string, component: React.FC<InstrumentProps5>) {
-//     this.name = name;
-//     this.component = component;
-//   }
-// }
-
 export interface InstrumentProps5 {
   state: AppState;
   dispatch: React.Dispatch<DispatchAction>;
@@ -41,6 +23,23 @@ export class Instrument5 {
   public readonly component: React.FC<InstrumentProps5>;
 
   constructor(name: string, component: React.FC<InstrumentProps5>) {
+    this.name = name;
+    this.component = component;
+  }
+}
+ export interface InstrumentProps4{
+  state: AppState;
+  dispatch: React.Dispatch<DispatchAction>;
+  name: string;
+  synth: Tone.AMSynth;
+  setSynth: (f: (oldSynth: Tone.AMSynth) => Tone.AMSynth) => void;
+}
+
+export class Instrument4 {
+  public readonly name: string;
+  public readonly component: React.FC<InstrumentProps4>;
+
+  constructor(name: string, component: React.FC<InstrumentProps4>) {
     this.name = name;
     this.component = component;
   }

@@ -11,6 +11,8 @@ import { WaveformVisualizer2 } from './visualizers/tdwlop';
 import { anliao2Visualizer } from './visualizers/anliao2';
 import { tdwlop } from './instruments/tdwlop';
 import { anliao2Instrument } from './instruments/anliao2';
+import { elyssamariVisualizer } from './visualizers/elyssamari';
+import {elyssamari} from './instruments/elyssamari';
 //import { tdwlop2 } from './instruments/tdwlop2';
 //import {} from '../../server/src/Database';
 /** ------------------------------------------------------------------------ **
@@ -25,8 +27,8 @@ import { anliao2Instrument } from './instruments/anliao2';
  */
 export type AppState = Map<string, any>;
 
-const instruments = List([PianoInstrument, tdwlop, anliao2Instrument,KalimbaInstrument]);
-const visualizers = List([WaveformVisualizer, WaveformVisualizer2, anliao2Visualizer, jWongVisualizer]);
+const instruments = List([PianoInstrument, tdwlop, anliao2Instrument, elyssamari, KalimbaInstrument]);
+const visualizers = List([WaveformVisualizer, WaveformVisualizer2, anliao2Visualizer, elyssamariVisualizer, jWongVisualizer]);
 
 export const defaultState: AppState = Map<string, any>({
   instruments,
