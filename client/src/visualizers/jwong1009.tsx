@@ -18,7 +18,7 @@ export const jWongVisualizer = new Visualizer(
         p5.noFill();
         
         p5.stroke('#A7C7E7');
-        p5.noiseDetail(6, 1);
+        // p5.noiseDetail(6, 1);
 
         const values = analyzer.getValue();
         for (let i = 0; i < values.length; i++) {
@@ -34,24 +34,35 @@ export const jWongVisualizer = new Visualizer(
                 let offset1 = p5.map(amplitude, 0, 1, 20, 150);
 
                 let r = offset + offset1;
-                let x = r * p5.cos(j) + (width/3);
+                let x = r * p5.cos(j) + (width/3) + 80;
                 let y = r * p5.sin(j) + (height/2);
                 p5.vertex(x, y);
                 xoff += 0.5;
                 yoff += 0.5;
             }
             p5.endShape(p5.CLOSE);
+
             p5.pop();
 
             p5.push();
-            // p5.translate(width / 2, height / 2);
+            p5.translate(width / 2, height / 2);
             // p5.fill(204, 101, 192, 127);
             // for (let k = 0; k < 10; k++) {
             //     p5.ellipse(0, 30, 20, 80);
             //     p5.rotate(p5.PI / 5);
             // }
+            // p5.fill();
+            p5.strokeWeight(0.05);
 
+            //Robot: DAVE
+            p5.ellipse(-690, 100, 20);
+            p5.ellipse(-650, 100, 20);
+            p5.rect(-695, 127, 50, 10);
 
+            //ROBOT: BOB
+            p5.ellipse(380, 100, 20);
+            p5.ellipse(420, 100, 20);
+            p5.rect(375, 127, 50, 10);
             p5.pop();
 
 
@@ -95,12 +106,12 @@ export const jWongVisualizer = new Visualizer(
             // p5.pop();
 
             //random dots for background
-            // p5.push();
-            // p5.strokeWeight(1.5);
-            //  const colors = ['#B3D28D', '#EBE6CA', '#E1C49A', '#EED7A8', '#EBB891', '#D98D88'];
-            // p5.stroke(p5.random(colors));
+            p5.push();
+            p5.strokeWeight(1.5);
+             const colors = ['#B3D28D', '#EBE6CA', '#E1C49A', '#EED7A8', '#EBB891', '#D98D88'];
+            p5.stroke(p5.random(colors));
             // p5.point(p5.random(width), p5.random(height));
-            // p5.pop();
+            p5.pop();
 
 
         // //     for (let j = 0; j < 360; j+= space) {
