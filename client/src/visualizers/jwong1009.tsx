@@ -15,10 +15,8 @@ export const jWongVisualizer = new Visualizer(
 
         p5.background('black');
         p5.strokeWeight(dim * 0.008);
-        p5.noFill();
-        
+        p5.noFill(); 
         p5.stroke('#A7C7E7');
-        // p5.noiseDetail(6, 1);
 
         const values = analyzer.getValue();
         for (let i = 0; i < values.length; i++) {
@@ -55,14 +53,30 @@ export const jWongVisualizer = new Visualizer(
             p5.strokeWeight(0.05);
 
             //Robot: DAVE
+            p5.rect(-704, 80, 70, 70);
+            p5.line(-670, 80, -702, 50);
+            p5.line(-670, 80, -638, 50);
+            p5.fill('white');
+            p5.ellipse(-702, 50, 10);
+            p5.ellipse(-638, 50, 10);
+            p5.noFill();
             p5.ellipse(-690, 100, 20);
             p5.ellipse(-650, 100, 20);
             p5.rect(-695, 127, 50, 10);
+            p5.rect(-693, 150, 45, 20);
 
             //ROBOT: BOB
+            p5.rect(366, 80, 70, 70);
+            p5.line(400, 80, 368, 50);
+            p5.line(400, 80, 432, 50);
+            p5.fill('white');
+            p5.ellipse(368, 50, 10);
+            p5.ellipse(432, 50, 10);
+            p5.noFill();
             p5.ellipse(380, 100, 20);
             p5.ellipse(420, 100, 20);
             p5.rect(375, 127, 50, 10);
+            p5.rect(378, 150, 45, 20);
             p5.pop();
 
 
