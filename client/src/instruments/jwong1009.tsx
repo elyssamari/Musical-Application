@@ -76,7 +76,7 @@ export function KalimbaKey({
       <div
         onMouseDown={() => synth?.triggerAttack(`${note}`)} // Question: what is `onMouseDown`?
         onMouseUp={() => synth?.triggerRelease('+0.25')} // Question: what is `onMouseUp`?
-        className={classNames('ba pointer flex justify-center dim', {
+        className={classNames('ba pointer flex justify-center dim shadow-5', {
         })}
         style={{
           // CSS
@@ -89,9 +89,9 @@ export function KalimbaKey({
           border: '1px solid black',
           width: '20px',
           height: '100px',
+          boxShadow: '1px 2px 12px 0 rgba(0,0,13,2)',
         }}
       ></div>
-    // </>
   );
 }
 
