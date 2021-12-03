@@ -25,8 +25,8 @@ export const jWongVisualizer = new Visualizer(
             p5.push();
             p5.beginShape();
             for (let j = 0; j < p5.TWO_PI; j += 0.1) {
-                let xoff = 1;
-                let yoff = 1;
+                // let xoff = 1;
+                // let yoff = 1;
                 let offset = p5.map(p5.sin(j * 5 + p5.frameCount * 0.08), 0, 1, 70, 100);
                 // let offset1 = p5.map(p5.noise(xoff, yoff) * amplitude, 0, 1, 75, 100);
                 let offset1 = p5.map(amplitude, 0, 1, 20, 150);
@@ -35,8 +35,8 @@ export const jWongVisualizer = new Visualizer(
                 let x = r * p5.cos(j) + (width/3) + 80;
                 let y = r * p5.sin(j) + (height/2);
                 p5.vertex(x, y);
-                xoff += 0.5;
-                yoff += 0.5;
+                // xoff += 0.5;
+                // yoff += 0.5;
             }
             p5.endShape(p5.CLOSE);
 
