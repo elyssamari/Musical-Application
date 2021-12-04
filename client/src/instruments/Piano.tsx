@@ -30,7 +30,7 @@ export function PianoKey({
    * This React component corresponds to either a major or minor key in the piano.
    * See `PianoKeyWithoutJSX` for the React component without JSX.
    */
-   console.log("inside the instruments piano function pianokey");
+  //  console.log("inside the instruments piano function pianokey");
   return (
     // Observations:
     // 1. The JSX refers to the HTML-looking syntax within TypeScript.
@@ -66,7 +66,7 @@ function PianoKeyWithoutJSX({
    * This React component for pedagogical purposes.
    * See `PianoKey` for the React component with JSX (JavaScript XML).
    */
-   console.log("inside the instruments piano function pianowithoutjsx");
+  //  console.log("inside the instruments piano function pianowithoutjsx");
   return React.createElement(
     'div',
     {
@@ -89,7 +89,7 @@ function PianoKeyWithoutJSX({
 }
 
 function PianoType({ title, onClick, active }: any): JSX.Element {
-  console.log("inside the instruments piano function pianotype");
+  // console.log("inside the instruments piano function pianotype");
   return (
     <div
       onClick={onClick}
@@ -123,7 +123,7 @@ function Piano({ synth, setSynth }: InstrumentProps): JSX.Element {
   const setOscillator = (newType: Tone.ToneOscillatorType) => {
     console.log("inside the instruments piano function setoscillator");
     setSynth(oldSynth => {
-      oldSynth.disconnect();
+      oldSynth.dispose();
 
       return new Tone.Synth({
         oscillator: { type: newType } as Tone.OmniOscillatorOptions,
@@ -143,7 +143,7 @@ function Piano({ synth, setSynth }: InstrumentProps): JSX.Element {
     'amsawtooth',
     'amtriangle',
   ]) as List<OscillatorType>;
-  console.log("inside the instruments piano function oscillators");
+  // console.log("inside the instruments piano function oscillators");
   return (
     <div className="pv4">
       <div className="relative dib h4 w-100 ml4">
@@ -166,6 +166,8 @@ function Piano({ synth, setSynth }: InstrumentProps): JSX.Element {
       </div>
       <div className={'pl4 pt4 flex'}>
         {oscillators.map(o => (
+          console.log("in piano's oscillators.map(o => ..."),
+          console.log({o}),
           <PianoType
             key={o}
             title={o}

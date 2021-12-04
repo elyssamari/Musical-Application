@@ -9,6 +9,7 @@ import {
   RadioButton20,
   RadioButtonChecked20,
   Music20,
+  StopOutline32,
 } from '@carbon/icons-react';
 
 // project imports
@@ -100,7 +101,8 @@ function Instruments({ state }: SideNavProps): JSX.Element {
 }
 
 function Visualizers({ state }: SideNavProps): JSX.Element {
-  const visualizers: List<Visualizer> = state.get('visualizers');console.log("visualizers");
+  const visualizers: List<Visualizer> = state.get('visualizers');
+  // console.log("visualizers");
   const activeVisualizer = state.get('visualizer')?.name;
   const location = useLocation();
 
@@ -130,35 +132,42 @@ function Songs({ state, dispatch }: SideNavProps): JSX.Element {
   console.log(songs);
  function finds(){
    
-   console.log('inside the finds function');
+  //  console.log('inside the finds function');
    let prestochango = document.getElementById('yeetusdeletus');
   
   }
+  //adds stop button to stop song from playing
   return (
     <Section title="Playlist"> 
-    <input value={sg} onChange={e=>setsg(e.target.value)} placeholder="Search"type="text" id="search" style={{ width: '170px' }}/>
-    
+      <input value={sg} onChange={e => setsg(e.target.value)} placeholder="Search" type="text" id="search" style={{ width: '170px', height:'32px', marginBottom: '5px' }} />
+
+      <div style={{ float: 'right', marginRight: '15px'}} onClick={() =>
+        dispatch(new DispatchAction('STOP_SONG'))}>
+        <StopOutline32 />
+      </div>
+
+      
+
       {songs.filter((filsg) => {
         if(sg !== 'Search'){
           if(filsg.get('songTitle').includes(sg)){
             return filsg;
           }
         }else{
-          console.log(`what is sg ${sg}`);
+          // console.log(`what is sg ${sg}`);
           return filsg;
         }
-        }).map(song => (
-        <div
+      }).map(song => (
+          <div
           key={song.get('id')}
           className="f6 pointer underline flex items-center no-underline i dim"
           onClick={() =>
             dispatch(new DispatchAction('PLAY_SONG', { id: song.get('id') }))
           }
-        >
-         
+          >
           <Music20 className="mr1" />
           {song.get('songTitle')}
-        </div>
+          </div>
       ))}
     </Section>
   );

@@ -10,6 +10,23 @@ import { AppState } from './State';
  * Contains implementation of an Instruments.
  ** ------------------------------------------------------------------------ */
 
+export interface InstrumentProps5 {
+  state: AppState;
+  dispatch: React.Dispatch<DispatchAction>;
+  name: string;
+  synth: Tone.FMSynth;
+  setSynth: (f: (oldSynth: Tone.FMSynth) => Tone.FMSynth) => void;
+}
+
+export class Instrument5 {
+  public readonly name: string;
+  public readonly component: React.FC<InstrumentProps5>;
+
+  constructor(name: string, component: React.FC<InstrumentProps5>) {
+    this.name = name;
+    this.component = component;
+  }
+}
  export interface InstrumentProps4{
   state: AppState;
   dispatch: React.Dispatch<DispatchAction>;
@@ -83,7 +100,7 @@ export class Instrument {
 }
 
 function TopNav({ name }: { name: string }) {
-  console.log("inside the instruments function topnav");
+  // console.log("inside the instruments function topnav");
   return (
     <div
       className={
@@ -106,7 +123,7 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
   state,
   dispatch,
 }: InstrumentContainerProps) => {
-  console.log("inside the instruments function instrumentcontainer");
+  // console.log("inside the instruments function instrumentcontainer");
   const InstrumentComponent = instrument.component;
   const [synth, setSynth] = useState(
     new Tone.Synth({
@@ -118,7 +135,7 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
 
   useEffect(() => {
     let timing = 0;
-    console.log("inside the instruments function instrumentcontainer useeffect");
+    // console.log("inside the instruments function instrumentcontainer useeffect");
     if (notes && synth) {
       let eachNote = notes.split(' ');
 
@@ -159,7 +176,7 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
       );
 
       new Tone.Part((time, value) => {
-        console.log("inside the instruments function instrumentcontainer newtone.part");
+        // console.log("inside the instruments function instrumentcontainer newtone.part");
         console.log(time);
         console.log(value);
         // the value is an object which contains both the note and the velocity
@@ -175,7 +192,7 @@ export const InstrumentContainer: React.FC<InstrumentContainerProps> = ({
       Tone.Transport.start();
 
       return () => {
-        console.log("inside the instruments function instrumentcontainer return tone.transport");
+        // console.log("inside the instruments function instrumentcontainer return tone.transport");
         Tone.Transport.cancel();
       };
     }
