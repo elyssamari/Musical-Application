@@ -140,6 +140,20 @@ DELETE FROM newsongs WHERE id = 6;
 INSERT INTO newsongs (id, song_title, artist_name, genre_type, notes)
 VALUES (8,'Teen Titans','Andy Sturmer','Theme','E5,8 B4,8 E5,8 B4,8 Eb5,8 B4,8 Eb5,8 B4,8 D5,8 B4,8 D5,8 B4,8 Eb5,8 B4,8 Eb5,8 B4,8 E4,4 E4,4 G4,4 B4,4 A4,4 G4,4 E4,4 D4,8 E4,2 r,4 G5,4 G5,8 G5,4 r,8 E4,4 E4,4 G4,4 A4,4 B4,4 A4,4 G4,4 A4,8 B4,2 r,4 G5,4 G5,8 G5,4 r,8 A4,8 G4,8 A4,4 G4,4 E4,8 E4,8 D4,8 E4,8 r,8 A4,8 G4,8 A4,4 G4,4 E4,8 E4,8 D4,8 E4,8 r,8 E4,8 A4,8 G4,8 A4,4 D4,4 Bb4,4 A4,4 G4,4 B4,1 E4,4 G4,8 E4,4 E5,4 E5,8 E5,8 G5,8 A5,4 Bb5,4 A5,8 G5,8 A5,8 G5,4 E4,4 E4,4 G4,4 B4,8 A4,4 G4,4 E4,8 D4,8 E4,4 r,4 G5,4 G5,8 G5,4 r,8 E4,4 E4,4 G4,4 A4,8 B4,4 A4,8 G4,8 A4,8 B4,4 r,4 G5,4 G5,8 G5,4 r,8 B3,8 E4,8 D4,8 E4,4 D4,8 B3,8 A3,8 B3,4 B3,8 E4,8 D4,8 E4,4 D4,8 D4,8 B3,8 A3,8 B3,4 B3,8 E4,8 D4,8 E4,4 D4,8 F4,4 E4,4 D4,4 E4,4 Gb4,1 E4,4 G4,8 E4,4 E5,4 E5,8 E5,8 G5,8 A5,4 G5,8 Bb5,4 A5,8 G5,8 A5,8 G5,8 E5,8 D5,8 E5,8 E5,8 E5,8 E5,8 E5,8');
 DELETE FROM newsongs WHERE id = 8;
+
+INSERT INTO newsongs(id, song_title, artist_name, genre_type, notes)
+VALUES (11, 'Carrying You', 'Azumi Inoue', 'Soundtrack', 'A4,8 B4,8 C5,4 r,8 B4,8 C5,4 E5,4 B4,2 r,4 E4,8 E4,8 A4,4 r,8 G4,8 A4,4 C5,4 G4,2 r,8 E4,8 E4,8 F4,4 C5,8 B4,4 C5,4 D5,8 E5,4 C5,4 r,8 C5,8 B4,8 A4,8 B4,4 G4,4 A4,2')
+
+INSERT INTO newsongs(id, song_title, artist_name, genre_type, notes)
+VALUES(12, 'Unrestrained', 'Xiao Zhan, Wang Yibo', 'Soundtrack','E5,2 r,8 C5,4 A4,4 B4,4 G4,4 E4,4 r,4 A4,4 B4,8 C5,8 D5,4 G4,4 A4,2 r,4 E5,2 r,4 C5,4 A4,4 B4,4 G4,4 E4,8 r,8 F4,8 G4,8 A4,4 r,4 A4,8 D5,8 C5,8 B4,8 C5,8 B4,4 r,4 C5,8 D5,8 E5,4 r,8 D5,8 C5,8 B4,8 C5,8 A4,8 B4,4 G5,8 A5,8 G5,4 r,4 C5,8 D5,8 E5,8 F5,8 G5,8 r,8 D5,4 E5,4 r,4 D5,8 E5,8 G5,8 C5,4 r,4 B4,8 C5,8 E5,8 A4,4 r,4 G4,8 G5,8 E5,8 C5,4 r,4 D5,8 E5,8 D5,8 E5,8 G5,8 A5,4 r,4 D5,8 E5,8 G5,8 C6,4 B5,4 A5,4 G5,4 E5,8 r,8 D5,8 G5,8 E5,4 r,4 A4,8 B4,8 C5,8 A4,8 B4,4 A5,4 G5,8 E5,4 r,4 D5,8 E5,8 G5,8 C6,4 B5,4 A5,4 G5,4 E5,8 D5,8 E5,8 B5,8 A5,4 r,4 A5,8 G5,8 A5,8 A5,8 B5,4 G5,4 A5,4 r,8');
+
+DELETE FROM newsongs WHERE id = 12;
+
+
+INSERT INTO newsongs(id, song_title, artist_name, genre_type, notes)
+VALUES (13, 'Gurenge', 'LiSA', 'Soundtrack', 'G4,8 G4,8 r,8 E5,4 D5,8 E5,8 G5,8 E5,8 D5,8 E5,4 r,8 C5,8 D5,8 E5,8 G5,8 E5,8 D5,8 E5,4 r,8 G4,8 G4,8 C5,8 r,8 G4,8 G4,8 C5,8 D5,8 C5,8 G5,4 F5,4 E5,4 D5,8 C5,8 C5,4 r,4 C5,8 D5,8 E5,8 D5,4 r,8 D5,8 D5,8 r,8 E5,8 G5,8 E5,4 r,8');
+DELETE FROM newsongs WHERE id = 13;
+
 -- INSERT INTO songs(id, song_title, notes)
 -- VALUES(2, 'Never Gonna Give You Up (Rick Astley)','A3 B1 D4 B1 F4 F4 E4 A3 B1 D4 B1 E4 E4 D4 C4 B1 A3 B1 D4 B1 D4 E4 C4 A3 A3 E4 D4');
 -- INSERT INTO songs (id, song_title, notes) 
