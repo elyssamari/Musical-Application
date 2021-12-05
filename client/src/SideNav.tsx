@@ -141,7 +141,7 @@ function Songs({ state, dispatch }: SideNavProps): JSX.Element {
     <Section title="Playlist"> 
       <input value={sg} onChange={e => setsg(e.target.value)} placeholder="Search" type="text" id="search" style={{ width: '170px', height:'32px', marginBottom: '5px' }} />
 
-      <div style={{ float: 'right', marginRight: '15px'}} onClick={() =>
+      <div className='dim' style={{ float: 'right'}} onClick={() =>
         dispatch(new DispatchAction('STOP_SONG'))}>
         <StopOutline32 />
       </div>
