@@ -18,7 +18,7 @@ import { AppState } from './State';
 import { Instrument } from './Instruments';
 import { Visualizer } from './Visualizers';
 import { send } from './Socket';
-import {findsql} from './App';
+import { findsql } from './App';
 
 
 /** ------------------------------------------------------------------------ **
@@ -177,6 +177,7 @@ export function SideNav({ state, dispatch }: SideNavProps): JSX.Element {
   return (
     <div className="absolute top-0 left-0 bottom-0 w5 z-1 shadow-1 bg-white flex flex-column">
       <div className="h3 fw7 f5 flex items-center pl3 bb bg-lightest-blue b--light-gray">
+        <img src='https://tdwlop.github.io/CSC600turtleducksvg/tdpic.svg' style = {{ height: 50 }}/>
         Turtleducks App
       </div>
       <div className="flex-auto">

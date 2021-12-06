@@ -57,7 +57,7 @@ function MachineType({ title, onClick, active }: any): JSX.Element {
       style={{
         backgroundColor: 'white',
         position: 'relative',
-        bottom: 15,
+        bottom: 30,
         borderColor: '#898888',
         borderRadius: '0.2rem'
       }}
