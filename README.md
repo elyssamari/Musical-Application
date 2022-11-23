@@ -4,7 +4,7 @@
 CSC 600 Instrument Music Application. Get ready to shred.
 
 ## Preview Project
-[![turtleduck](https://user-images.githubusercontent.com/70128989/203473798-e76e57ba-f910-4c79-919f-aecd40a14450.JPG)](http://www.youtube.com/embed/watch?v=QIzWHXECJGc)
+[![turtleduck](https://user-images.githubusercontent.com/70128989/203473798-e76e57ba-f910-4c79-919f-aecd40a14450.JPG)](https://youtu.be/QIzWHXECJGc)
 
 ## Client
 
